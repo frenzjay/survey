@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Survey</title>
+    <style>
+        :root {
+            --primary-font: 'Arial', sans-serif;
+            --secondary-font: 'Helvetica', sans-serif;
+            --main-bg: #f5f5f5;
+            --accent-color: #ff6347;
+            --button-hover-color: #e0452f;
+        }
+        
+        body {
+            font-family: var(--primary-font);
+            background-color: var(--main-bg);
+            color: #333;
+            line-height:  1.6;
+            margin:  0;
+            padding:  0;
+            box-sizing: border-box;
+        }
+
+        h1, h3 {
+            font-family: var(--secondary-font);
+            text-align: center;
+            margin-bottom:  20px;
+        }
+
+        p {
+            max-width:  800px;
+            margin:  0 auto;
+            padding:  0  20px;
+        }
+
+        button {
+            display: inline-block;
+            padding:  10px  20px;
+            margin:  10px;
+            border: none;
+            background-color: var(--accent-color);
+            color: white;
+            cursor: pointer;
+            transition: background-color  0.3s ease;
+            font-weight: bold;
+        }
+
+        button:hover {
+            background-color: var(--button-hover-color);
+        }
+
+        h1::after {
+            content: '';
+            display: block;
+            height:  2px;
+            width:  50%;
+            margin:  20px auto;
+            background-color: var(--accent-color);
+        }
+
+        .container {
+            max-width:  1200px;
+            margin:  0 auto;
+            padding:  20px;
+        }
+
+        .content {
+            text-align: center;
+        }
+
+        .buttons-container {
+            display: flex;
+            justify-content: center;
+            gap:  20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="content">
+            <h1>Will you be my Valentine??</h1>
+            <p>plz pick honestly :3</p>
+            <div class="buttons-container">
+                <button id="yesButton">YES</button>
+                <button id="noButton">NO</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+var audio = new Audio('http://frenzjay.github.io/audio/Kinikilig.mp3');
+var yesButton = document.getElementById('yesButton');
+var noButton = document.getElementById('noButton');
+
+yesButton.onclick = function() {
+    audio.play();
+
+    var messages = ['OMGGGG', 'I love you so much!', 'You are my sunshine!', 'You make my heart flutter!', 'LETS DATEEE!'];
+    var colors = ['red', 'blue', 'green', 'yellow', 'pink', 'purple', 'orange', 'black', 'white'];
+    var imgSrc = 'https://media.tenor.com/a_t_D2lPn8AAAAAM/kermit-the.gif';
+
+    var i = 0;
+    var messageInterval = setInterval(function() {
+        if (i >= messages.length) {
+            clearInterval(messageInterval);
+            var img = document.createElement('img');
+            img.src = imgSrc;
+            document.body.appendChild(img);
+        } else {
+            var messageDiv = document.createElement('div');
+            messageDiv.style.color = "white";
+            messageDiv.innerHTML = messages[i];
+            document.body.appendChild(messageDiv);
+
+            var rand = Math.floor(Math.random() * colors.length);
+            document.body.style.backgroundColor = colors[rand];
+        }
+        i++;
+    }, 2000);
+};
+
+noButton.onclick = function() {
+    var buttonWidth = noButton.offsetWidth;
+    var buttonHeight = noButton.offsetHeight;
+    var x = Math.floor(Math.random() * (window.innerWidth - buttonWidth));
+    var y = Math.floor(Math.random() * (window.innerHeight - buttonHeight));
+    noButton.style.position = 'absolute';
+    noButton.style.left = x + 'px';
+    noButton.style.top = y + 'px';
+
+    var buttonTexts = ["Pleaseeee", "Please beeee myyy valentineeeee", "Im begging you", "please just click yes"];
+    var rand = Math.floor(Math.random() * buttonTexts.length);
+    noButton.textContent = buttonTexts[rand];
+};
+
+    </script>
+</body>
+</html>
